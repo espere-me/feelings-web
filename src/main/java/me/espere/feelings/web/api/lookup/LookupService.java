@@ -1,4 +1,4 @@
-package me.espere.feelings.web.lookup;
+package me.espere.feelings.web.api.lookup;
 
 import me.espere.feelings.spec.dictionary.VadDictionary;
 import me.espere.feelings.spec.dictionary.VadEntry;

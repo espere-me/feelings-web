@@ -1,7 +1,7 @@
-package me.espere.feelings.web.evaluate;
+package me.espere.feelings.web.api.evaluate;
 
-import me.espere.feelings.web.evaluate.EvaluateResponse.EvaluateResponseEntry;
-import me.espere.feelings.web.evaluate.EvaluateResponse.EvaluateResponseFeeling;
+import me.espere.feelings.web.api.evaluate.EvaluateResponse.EvaluateResponseEntry;
+import me.espere.feelings.web.api.evaluate.EvaluateResponse.EvaluateResponseFeeling;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;

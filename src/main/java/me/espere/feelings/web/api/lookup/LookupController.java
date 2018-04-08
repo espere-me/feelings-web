@@ -1,7 +1,7 @@
-package me.espere.feelings.web.lookup;
+package me.espere.feelings.web.api.lookup;
 
 import me.espere.feelings.spec.dictionary.VadEntry;
-import me.espere.feelings.web.lookup.LookupResponse.LookupResponseEntry;
+import me.espere.feelings.web.api.lookup.LookupResponse.LookupResponseEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;

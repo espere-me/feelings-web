@@ -1,4 +1,4 @@
-package me.espere.feelings.web.evaluate;
+package me.espere.feelings.web.api.evaluate;
 
 import lombok.Value;
 import me.espere.feelings.spec.dictionary.VadEntry;

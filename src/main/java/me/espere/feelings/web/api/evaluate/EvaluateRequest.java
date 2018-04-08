@@ -1,13 +1,11 @@
-package me.espere.feelings.web.lookup;
+package me.espere.feelings.web.api.evaluate;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 
-import java.util.Collection;
-
 @Value
 @AllArgsConstructor(onConstructor = @__(@JsonCreator))
-public class LookupRequest {
-    private Collection<String> words;
+public class EvaluateRequest {
+    private String sentence;
 }
