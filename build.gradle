@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.0.0.RELEASE'
+}
+
+repositories {
+    jcenter()
+
+    maven {
+        url 'https://dl.bintray.com/espere-me/production/'
+    }
+}
+
+dependencies {
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
+
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.0.RELEASE'
+
+    implementation group: 'me.espere.feelings', name: 'feelings-spec', version: 'v0.0.1'
+    implementation group: 'me.espere.feelings', name: 'feelings-impl', version: 'v0.0.2'
+}
