@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Feelings Web</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <div class="mt-5">
+                <form action="#" th:action="@{/}" method="post" th:object="${feelingsForm}">
+                    <div class="form-group">
+                        <label for="sentence">Sentence</label>
+                        <input id="sentence" class="form-control" th:field="*{sentence}">
+                    </div>
+
+                    <button class="btn btn-primary">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</div>
+</body>
+</html>

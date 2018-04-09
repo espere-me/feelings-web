@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Feelings Web</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8" align="center">
+            <div class="mt-5">
+                <div class="card">
+                    <div class="card-body" th:text="${sentence}" />
+                </div>
+
+                <div class="card mt-5">
+                    <div class="card-body" th:text="'Valence: ' + ${valence}" />
+                    <div class="card-body" th:text="'Arousal: ' + ${arousal}" />
+                    <div class="card-body" th:text="'Dominance: ' + ${dominance}" />
+                </div>
+
+                <table class="table mt-5">
+                    <thead>
+                    <tr>
+                        <th scope="col">Word</th>
+                        <th scope="col">Lemma</th>
+                        <th scope="col">Valence</th>
+                        <th scope="col">Arousal</th>
+                        <th scope="col">Dominance</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="entry : ${entries}">
+                        <td th:text="${entry.word}" />
+                        <td th:text="${entry.word}" />
+                        <td th:text="${entry.vadValue.valence}" />
+                        <td th:text="${entry.vadValue.arousal}" />
+                        <td th:text="${entry.vadValue.dominance}" />
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</div>
+</body>
+</html>

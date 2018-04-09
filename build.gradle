@@ -17,6 +17,7 @@ dependencies {
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.0.RELEASE'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.0.0.RELEASE'
 
     implementation group: 'me.espere.feelings', name: 'feelings-spec', version: 'v0.0.1'
     implementation group: 'me.espere.feelings', name: 'feelings-impl', version: 'v0.0.2'
