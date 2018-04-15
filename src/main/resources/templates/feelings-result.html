@@ -34,12 +34,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="entry : ${entries}">
-                        <td th:text="${entry.word}" />
-                        <td th:text="${entry.word}" />
-                        <td th:text="${entry.vadValue.valence}" />
-                        <td th:text="${entry.vadValue.arousal}" />
-                        <td th:text="${entry.vadValue.dominance}" />
+                    <tr th:each="wordAnalysis : ${wordAnalyses}">
+                        <td th:text="${wordAnalysis.word}" />
+                        <td th:text="${wordAnalysis.lemma}" />
+                        <td th:text="${wordAnalysis.vadValue.valence}" />
+                        <td th:text="${wordAnalysis.vadValue.arousal}" />
+                        <td th:text="${wordAnalysis.vadValue.dominance}" />
                     </tr>
                     </tbody>
                 </table>

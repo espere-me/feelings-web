@@ -1,7 +1,8 @@
 package me.espere.feelings.web.api.evaluate;
 
-import me.espere.feelings.web.api.evaluate.EvaluateResponse.EvaluateResponseEntry;
+import me.espere.feelings.spec.analyzer.VadSentenceAnalysis;
 import me.espere.feelings.web.api.evaluate.EvaluateResponse.EvaluateResponseFeeling;
+import me.espere.feelings.web.api.evaluate.EvaluateResponse.EvaluateResponseWordAnalysis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,27 +27,28 @@ public class EvaluateController {
     @RequestMapping(method = RequestMethod.POST)
     public EvaluateResponse evaluate(@RequestBody EvaluateRequest evaluateRequest) {
         String sentence = evaluateRequest.getSentence();
-        Evaluation evaluation = evaluateService.evaluateSentence(sentence);
-        return buildEvaluateResponse(evaluation);
+        VadSentenceAnalysis sentenceAnalysis = evaluateService.evaluateSentence(sentence);
+        return buildEvaluateResponse(sentenceAnalysis);
     }
 
-    private EvaluateResponse buildEvaluateResponse(Evaluation evaluation) {
+    private EvaluateResponse buildEvaluateResponse(VadSentenceAnalysis sentenceAnalysis) {
         EvaluateResponseFeeling responseFeeling = new EvaluateResponseFeeling(
-                evaluation.getFeeling().getValence(),
-                evaluation.getFeeling().getArousal(),
-                evaluation.getFeeling().getDominance()
+                sentenceAnalysis.getVadValue().getValence(),
+                sentenceAnalysis.getVadValue().getArousal(),
+                sentenceAnalysis.getVadValue().getDominance()
         );
 
-        Collection<EvaluateResponseEntry> responseEntries = evaluation.getEntries()
+        Collection<EvaluateResponseWordAnalysis> responseWordAnalyses = sentenceAnalysis.getWordAnalyses()
                 .stream()
-                .map(entry -> new EvaluateResponseEntry(
-                        entry.getWord(),
-                        entry.getVadValue().getValence(),
-                        entry.getVadValue().getArousal(),
-                        entry.getVadValue().getDominance()
+                .map(wordAnalysis -> new EvaluateResponseWordAnalysis(
+                        wordAnalysis.getWord(),
+                        wordAnalysis.getLemma(),
+                        wordAnalysis.getVadValue().getValence(),
+                        wordAnalysis.getVadValue().getArousal(),
+                        wordAnalysis.getVadValue().getDominance()
                 ))
                 .collect(Collectors.toList());
 
-        return new EvaluateResponse(responseFeeling, responseEntries);
+        return new EvaluateResponse(responseFeeling, responseWordAnalyses);
     }
 }

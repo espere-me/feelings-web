@@ -9,7 +9,7 @@ import java.util.Collection;
 public class EvaluateResponse {
     private EvaluateResponseFeeling feeling;
 
-    private Collection<EvaluateResponseEntry> entries;
+    private Collection<EvaluateResponseWordAnalysis> wordAnalyses;
 
     @Value
     public static class EvaluateResponseFeeling {
@@ -19,8 +19,9 @@ public class EvaluateResponse {
     }
 
     @Value
-    public static class EvaluateResponseEntry {
+    public static class EvaluateResponseWordAnalysis {
         private String word;
+        private String lemma;
         private BigDecimal valence;
         private BigDecimal arousal;
         private BigDecimal dominance;
