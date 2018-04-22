@@ -1,7 +1,7 @@
 package me.espere.feelings.web.api.lookup;
 
-import me.espere.feelings.spec.dictionary.VadDictionary;
-import me.espere.feelings.spec.dictionary.VadEntry;
+import me.espere.feelings.spec.dictionary.Dictionary;
+import me.espere.feelings.spec.dictionary.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,17 +12,17 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 public class LookupService {
-    private VadDictionary vadDictionary;
+    private Dictionary dictionary;
 
     @Autowired
-    public LookupService(VadDictionary vadDictionary) {
-        this.vadDictionary = vadDictionary;
+    public LookupService(Dictionary dictionary) {
+        this.dictionary = dictionary;
     }
 
-    public Collection<VadEntry> lookupWords(Collection<String> words) {
+    public Collection<Entry> lookupWords(Collection<String> words) {
         return words
                 .stream()
-                .map(vadDictionary::getEntry)
+                .map(dictionary::getEntry)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(toList());

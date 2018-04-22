@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class FeelingsForm {
-    private String sentence;
+    private String text;
 }

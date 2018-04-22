@@ -2,11 +2,11 @@ package me.espere.feelings.web.config;
 
 import me.espere.feelings.impl.dictionary.InMemoryCsvVadDictionary;
 import me.espere.feelings.impl.lemmatizer.NlpCoreBasedLemmatizer;
-import me.espere.feelings.spec.aggregator.MeanValueVadAggregator;
-import me.espere.feelings.spec.aggregator.VadAggregator;
-import me.espere.feelings.spec.analyzer.SimpleVadSentenceAnalyzer;
-import me.espere.feelings.spec.analyzer.VadSentenceAnalyzer;
-import me.espere.feelings.spec.dictionary.VadDictionary;
+import me.espere.feelings.spec.aggregator.Aggregator;
+import me.espere.feelings.spec.aggregator.MeanValueAggregator;
+import me.espere.feelings.spec.analyzer.SimpleTextAnalyzer;
+import me.espere.feelings.spec.analyzer.TextAnalyzer;
+import me.espere.feelings.spec.dictionary.Dictionary;
 import me.espere.feelings.spec.lemmatizer.Lemmatizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,17 +21,17 @@ public class SentimentConfiguration {
     }
 
     @Bean
-    public VadDictionary dictionary() throws IOException {
-        return new InMemoryCsvVadDictionary("vad-dictionary.csv");
+    public Dictionary dictionary() throws IOException {
+        return new InMemoryCsvVadDictionary();
     }
 
     @Bean
-    public VadAggregator aggregator() {
-        return new MeanValueVadAggregator();
+    public Aggregator aggregator() {
+        return new MeanValueAggregator();
     }
 
     @Bean
-    public VadSentenceAnalyzer analyzer(Lemmatizer lemmatizer, VadDictionary dictionary, VadAggregator aggregator) {
-        return new SimpleVadSentenceAnalyzer(lemmatizer, dictionary, aggregator);
+    public TextAnalyzer analyzer(Lemmatizer lemmatizer, Dictionary dictionary, Aggregator aggregator) {
+        return new SimpleTextAnalyzer(lemmatizer, dictionary, aggregator);
     }
 }

@@ -7,5 +7,5 @@ import lombok.Value;
 @Value
 @AllArgsConstructor(onConstructor = @__(@JsonCreator))
 public class EvaluateRequest {
-    private String sentence;
+    private String text;
 }

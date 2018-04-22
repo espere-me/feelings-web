@@ -1,6 +1,6 @@
 package me.espere.feelings.web.website;
 
-import me.espere.feelings.spec.analyzer.VadSentenceAnalysis;
+import me.espere.feelings.spec.analyzer.TextAnalysis;
 import me.espere.feelings.web.api.evaluate.EvaluateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,17 +27,17 @@ public class FeelingsController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String feelings(@ModelAttribute FeelingsForm feelingsForm, Model model) {
-        String sentence = feelingsForm.getSentence();
+        String text = feelingsForm.getText();
 
-        VadSentenceAnalysis sentenceAnalysis = evaluateService.evaluateSentence(sentence);
+        TextAnalysis textAnalysis = evaluateService.evaluateText(text);
 
-        model.addAttribute("sentence", sentence);
+        model.addAttribute("text", text);
 
-        model.addAttribute("valence", sentenceAnalysis.getVadValue().getValence());
-        model.addAttribute("arousal", sentenceAnalysis.getVadValue().getArousal());
-        model.addAttribute("dominance", sentenceAnalysis.getVadValue().getDominance());
+        model.addAttribute("valence", textAnalysis.getVadValue().getValence());
+        model.addAttribute("arousal", textAnalysis.getVadValue().getArousal());
+        model.addAttribute("dominance", textAnalysis.getVadValue().getDominance());
 
-        model.addAttribute("wordAnalyses", sentenceAnalysis.getWordAnalyses());
+        model.addAttribute("wordAnalyses", textAnalysis.getWordAnalyses());
 
         return "feelings-result";
     }

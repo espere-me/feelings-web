@@ -1,6 +1,6 @@
 package me.espere.feelings.web.api.lookup;
 
-import me.espere.feelings.spec.dictionary.VadEntry;
+import me.espere.feelings.spec.dictionary.Entry;
 import me.espere.feelings.web.api.lookup.LookupResponse.LookupResponseEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,11 +27,11 @@ public class LookupController {
     @RequestMapping(method = RequestMethod.POST)
     public LookupResponse lookup(@RequestBody LookupRequest lookupRequest) {
         Collection<String> words = lookupRequest.getWords();
-        Collection<VadEntry> lookupEntries = lookupService.lookupWords(words);
+        Collection<Entry> lookupEntries = lookupService.lookupWords(words);
         return buildLookupResponse(lookupEntries);
     }
 
-    private LookupResponse buildLookupResponse(Collection<VadEntry> lookupEntries) {
+    private LookupResponse buildLookupResponse(Collection<Entry> lookupEntries) {
         Collection<LookupResponseEntry> responseEntries = lookupEntries
                 .stream()
                 .map(entry -> new LookupResponseEntry(

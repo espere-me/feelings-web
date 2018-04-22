@@ -1,6 +1,6 @@
 package me.espere.feelings.web.api.evaluate;
 
-import me.espere.feelings.spec.analyzer.VadSentenceAnalysis;
+import me.espere.feelings.spec.analyzer.TextAnalysis;
 import me.espere.feelings.web.api.evaluate.EvaluateResponse.EvaluateResponseFeeling;
 import me.espere.feelings.web.api.evaluate.EvaluateResponse.EvaluateResponseWordAnalysis;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,19 +26,19 @@ public class EvaluateController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST)
     public EvaluateResponse evaluate(@RequestBody EvaluateRequest evaluateRequest) {
-        String sentence = evaluateRequest.getSentence();
-        VadSentenceAnalysis sentenceAnalysis = evaluateService.evaluateSentence(sentence);
-        return buildEvaluateResponse(sentenceAnalysis);
+        String text = evaluateRequest.getText();
+        TextAnalysis textAnalysis = evaluateService.evaluateText(text);
+        return buildEvaluateResponse(textAnalysis);
     }
 
-    private EvaluateResponse buildEvaluateResponse(VadSentenceAnalysis sentenceAnalysis) {
+    private EvaluateResponse buildEvaluateResponse(TextAnalysis textAnalysis) {
         EvaluateResponseFeeling responseFeeling = new EvaluateResponseFeeling(
-                sentenceAnalysis.getVadValue().getValence(),
-                sentenceAnalysis.getVadValue().getArousal(),
-                sentenceAnalysis.getVadValue().getDominance()
+                textAnalysis.getVadValue().getValence(),
+                textAnalysis.getVadValue().getArousal(),
+                textAnalysis.getVadValue().getDominance()
         );
 
-        Collection<EvaluateResponseWordAnalysis> responseWordAnalyses = sentenceAnalysis.getWordAnalyses()
+        Collection<EvaluateResponseWordAnalysis> responseWordAnalyses = textAnalysis.getWordAnalyses()
                 .stream()
                 .map(wordAnalysis -> new EvaluateResponseWordAnalysis(
                         wordAnalysis.getWord(),
