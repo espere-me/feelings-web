@@ -3,7 +3,7 @@ package me.espere.feelings.web.config;
 import me.espere.feelings.impl.dictionary.InMemoryCsvVadDictionary;
 import me.espere.feelings.impl.lemmatizer.NlpCoreBasedLemmatizer;
 import me.espere.feelings.spec.aggregator.Aggregator;
-import me.espere.feelings.spec.aggregator.NormalizedMaxRangeAggregator;
+import me.espere.feelings.spec.aggregator.DistanceToMeanAggregator;
 import me.espere.feelings.spec.analyzer.SimpleTextAnalyzer;
 import me.espere.feelings.spec.analyzer.TextAnalyzer;
 import me.espere.feelings.spec.dictionary.Dictionary;
@@ -27,7 +27,7 @@ public class SentimentConfiguration {
 
     @Bean
     public Aggregator aggregator(Dictionary dictionary) {
-        return new NormalizedMaxRangeAggregator(dictionary);
+        return new DistanceToMeanAggregator(dictionary);
     }
 
     @Bean
